@@ -23,6 +23,7 @@ window.addEventListener('load', () => {
                 return raw.json();
             })
             .then((info) => {
+                form.reset();
                 console.log(info);
             });
     });
