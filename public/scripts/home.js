@@ -5,11 +5,14 @@ window.addEventListener('load', () => {
     form.addEventListener('submit', function(event){
         event.preventDefault();
 
-        var firstname = document.querySelector('input');
-
-        var data = new URLSearchParams();
-        data.append('firstname', firstname.value);
-        data.append('lastname', 'Gavi');
+        // transforma el formulario como DOM (lo que el usuario puede ver)
+        // a una colección de datos (variables con valores)
+        var formInfo = new FormData(form);
+        // agrego esos datos a lo que vamos a enviar
+        var data = new URLSearchParams(formInfo);
+        data.append('adittional', 'algo adicional');
+        data.append('date', Date.now());
+        data.delete('firstname');
 
         var promise = fetch('/api/people', {
                 method: 'POST',
