@@ -28,7 +28,10 @@ function createRoutes (app, db) {
 
     app.post('/api/people', (request, response) => {
         console.log(request.body);
-        people.push(request.body);
+
+        const products = db.collection('products');
+        products.insert(request.body);
+
         response.send({
             message: 'ok',
         });
